@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -48,9 +49,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        grounded = Physics.Raycast(base.transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(base.transform.position, Vector3.down, playerHeight, whatIsGround);
+        Debug.DrawLine(base.transform.position, base.transform.position + Vector3.down * playerHeight, grounded ? Color.green : Color.red, .5f);
         MyInput();
         SpeedControl();
+
         if (grounded)
         {
             rb.drag = groundDrag;
@@ -111,8 +114,8 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         int num = Random.Range(0, jumpSounds.Length);
-        AudioClip clip = jumpSounds[num];
-        playerLegs.PlayOneShot(clip);
+        //AudioClip clip = jumpSounds[num];
+        //playerLegs.PlayOneShot(clip);
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(base.transform.up * jumpForce, ForceMode.Impulse);
     }
