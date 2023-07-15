@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInputs : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
-    public float sensX;
+    [SerializeField]
+    private float sensX;
 
-    public float sensY;
+    [SerializeField]
+    private float sensY;
 
     private float xRotation;
 
