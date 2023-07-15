@@ -749,9 +749,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f6bfbaf3c5683409f04e420f83d5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  groundDrag: 8
-  jumpForce: 5
+  moveSpeed: 8
+  groundDrag: 3
+  jumpForce: 8
   jumpCooldown: 0.1
   airMultiplier: 0.4
   playerHeight: 1
