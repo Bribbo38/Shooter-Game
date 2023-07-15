@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         {
             readyToJump = false;
             Jump();
-            Invoke("ResetJump", jumpCooldown);
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
 
