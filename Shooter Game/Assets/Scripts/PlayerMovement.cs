@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
+    /*public float moveSpeed;
 
     public float groundDrag;
 
@@ -123,5 +123,42 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }*/
+
+
+    [SerializeField]
+    private float speed = 6.0f;
+    [SerializeField]
+    private float jumpHeight = 2.0f;
+    [SerializeField]
+    private float gravity = 20.0f;
+    [SerializeField]
+    private Transform cameraTransform;
+
+    private CharacterController controller;
+    private Vector3 moveDirection = Vector3.zero;
+
+    private void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
+
+    private void Update()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        Vector3 movement = (cameraTransform.right * horizontal + cameraTransform.forward * vertical).normalized;
+        movement.y = 0f;
+
+        controller.Move(movement * speed * Time.deltaTime);
+
+        if (controller.isGrounded && Input.GetButtonDown("Jump"))
+        {
+            moveDirection.y = Mathf.Sqrt(2 * jumpHeight * gravity);
+        }
+
+        moveDirection.y -= gravity * Time.deltaTime;
+
+        controller.Move(moveDirection * Time.deltaTime);
     }
 }
